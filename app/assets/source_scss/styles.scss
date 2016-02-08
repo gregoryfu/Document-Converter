@@ -1,0 +1,21 @@
+// Import all SASS partials
+
+// Utilities
+// Variables, Mixins, and Functions
+@import "utilities/index";
+
+// Base Styles
+// Base Element, Frameworks, and Resets
+@import "base/index";
+
+// Layout Styles
+// Main Layout Components to Structure a Page
+@import "layout/index";
+
+// Modules
+// Elements and Modifiers of the Main Layout Components
+@import "modules/index";
+
+// States
+// Collapsed and Print States
+@import "states/index";

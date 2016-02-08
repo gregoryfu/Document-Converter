@@ -1,0 +1,12 @@
+.header {
+  width: 100%;
+    background: #eaeaea;
+    nav li {
+        display: inline-block;
+    }
+}
+.header__logo {
+    width: 300px;
+    float: left;
+    padding: 15px 0;
+}

@@ -1,0 +1,9 @@
+//===== Mixins =====//
+
+@mixin text($size, $weight, $family, $color, $line) {
+  font-size: $size;
+  font-weight: $weight;
+  font-family: $family;
+  color: $color;
+  line-height: $line;
+}

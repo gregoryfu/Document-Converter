@@ -1,0 +1,21 @@
+.results.container {
+    .inner-container {
+        padding: 50px 25px;
+    }
+    .outerDiv {
+        height: 500px;
+        font-size: 16px;
+        color: #777;
+        padding: 50px;
+        margin: 50px 0;
+        overflow: auto;
+        border: 2px solid #f2f2f2;
+        border-radius: 10px;
+        transition: all 300ms;
+    }
+        .outerDiv:focus {
+            outline: none;
+            border-color: #ccc;
+            box-shadow: 0 0 3px #ccc;
+        }
+}

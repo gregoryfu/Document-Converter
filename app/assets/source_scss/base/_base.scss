@@ -1,0 +1,60 @@
+//===== Default Global Styles =====//
+// Please Use Element Selectors Only
+
+* {
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: $font__family--secondary;
+  font-size: $font__size--p;
+  font-weight: $font__weight--medium;
+  line-height: $line__height--base;
+}
+
+h1 {
+  font-family: $font__family--primary;
+  font-size: $font__size--h1;
+  font-weight: $font__weight--bold;
+}
+
+h2 {
+  font-family: $font__family--primary;
+  font-size: $font__size--h2;
+  font-weight: $font__weight--bold;
+}
+
+p {
+  font-family: $font__family--secondary;
+  font-size: $font__size--p;
+  font-weight: $font__weight--medium;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+// Links
+a {
+  color: $color__primary;
+  text-decoration: none;
+  
+  &:hover {
+    color: $color__accent;
+    text-decoration: none;
+  }
+  &:active {
+    color: $color__accent;
+    text-decoration: none;
+  }
+  &:visited {
+    color: $color__primary;
+    text-decoration: none;
+  }
+  &:focus {
+    color: $color__accent;
+    text-decoration: none;
+  }
+}
