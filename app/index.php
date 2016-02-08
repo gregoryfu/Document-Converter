@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 
 <?php
-  $title = "Rhino Workflow";
-  $description = "A workflow that utilizes the Gulp task runner, SMACSS (Scalable and Modular Architecture for CSS), BEM (Block, Element, Modifier) naming conventions, and modular PHP using includes.";
+  $title = "Article Converter";
+  $description = "This program is meant to take articles written in Microsoft Word and convert them into a clean HTML equivalent that makes posting and editing a breeze. Support will start off with converting \"web page, filtered\" files saved through Microsoft Word into clean paragraph tag seperated sections.";
   include "assets/php/head.php";
 
     // Document Handler
@@ -150,7 +150,7 @@
         preg_match('/m-postdate[: ]*\K(.*?)(?=\<)/is', $newDocument, $matches);
         $postDate = $matches[0];
         // Subject
-        preg_match('/m-categories[: ]*\K(.*?)(?=\<)/is', $newDocument, $matches);
+        preg_match('/m-subject[: ]*\K(.*?)(?=\<)/is', $newDocument, $matches);
         $subject = $matches[0];
         // Author
         preg_match('/m-author[: ]*\K(.*?)(?=\<)/is', $newDocument, $matches);
