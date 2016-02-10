@@ -14,7 +14,6 @@
         if(isset($_POST["endnotes"])){
             $endnotes = true;
         } else {$endnotes = false;}
-        $h4style = $_POST["h4style"];
         
         
         // Add sup tags to mso class spans
@@ -78,10 +77,6 @@
         $newDocument = preg_replace('/(\—)/i', "&mdash;", $newDocument);
         // Replace N-Dashes with &ndash;
         $newDocument = preg_replace('/(\–)/i', "&ndash;", $newDocument);
-        // Replace align with style tag
-        $newDocument = preg_replace('/(align=center)/i', " style=\"text-align: center;\"", $newDocument);
-        $newDocument = preg_replace('/(align=left)/i', " style=\"text-align: left;\"", $newDocument);
-        $newDocument = preg_replace('/(align=right)/i', " style=\"text-align: right;\"", $newDocument);
         
         
         
@@ -92,7 +87,7 @@
         
         if($endnotes == true){
             // Replace Endnotes with H4
-            $newDocument = preg_replace('/(\<p\>[\s\<b\>]*endnotes[\s\<\/b\>]*<\/p\>)/is', "<h4 style=\"{$h4style}\">Endnotes</h4>", $newDocument);
+            $newDocument = preg_replace('/(\<p\>[\s\<b\>]*endnotes[\s\<\/b\>]*<\/p\>)/is', "<h4 style=\"margin-bottom: 15px; font-weight: bold;\">Endnotes</h4>", $newDocument);
             // Replace p tags after "endnotes" with li tags
             $liPattern = [
                 '/(?<=endnotes\<\/h4\>).*?\K(\<p\>\d\.*\s*)/is',
@@ -134,9 +129,17 @@
         
         
         // Add blockquotes to paragraphs which only contain the word "blockquote"
-        $newDocument = preg_replace('/(\<p\s*\>\s*blockquote\s*\<\/p\>)/is', "<blockquote>", $newDocument);
+        $newDocument = preg_replace('/(\<p.*\>\s*blockquote\s*\<\/p\>)/i', "<blockquote>", $newDocument);
         // Add closing blockquote tag to paragraphs which only contain the word "endblockquote"
-        $newDocument = preg_replace('/(\<p\s*\>\s*endblockquote\s*\<\/p\>)/is', "</blockquote>", $newDocument);
+        $newDocument = preg_replace('/(\<p.*\>\s*endblockquote\s*\<\/p\>)/i', "</blockquote>", $newDocument);
+        
+        
+        // Replace align with style tag
+        $newDocument = preg_replace('/(align=center)/i', " style=\"text-align: center;\"", $newDocument);
+        $newDocument = preg_replace('/(align=left)/i', " style=\"text-align: left;\"", $newDocument);
+        $newDocument = preg_replace('/(align=right)/i', " style=\"text-align: right;\"", $newDocument);
+        
+        
         // Remove whitespace before closing p tags
         $newDocument = preg_replace('/(\s+)(?=\<\/p\>)/is', '', $newDocument);
         // Extra round of removing empty HTML tags
@@ -150,20 +153,26 @@
         preg_match('/m-postdate[: ]*\K(.*?)(?=\<)/is', $newDocument, $matches);
         $postDate = $matches[0];
         // Subject
-        preg_match('/m-subject[: ]*\K(.*?)(?=\<)/is', $newDocument, $matches);
-        $subject = $matches[0];
+        preg_match('/m-title[: ]*\K(.*?)(?=\<)/is', $newDocument, $matches);
+        $title = $matches[0];
         // Author
         preg_match('/m-author[: ]*\K(.*?)(?=\<)/is', $newDocument, $matches);
         $author = $matches[0];
         // Categories
         preg_match('/m-categories[: ]*\K(.*?)(?=\<)/is', $newDocument, $matches);
         $categories = $matches[0];
+        // WP Categories
+        preg_match('/m-wpcategories[: ]*\K(.*?)(?=\<)/is', $newDocument, $matches);
+        $wpcategories = $matches[0];
         // Tags
         preg_match('/m-tags[: ]*\K(.*?)(?=\<)/is', $newDocument, $matches);
         $tags = $matches[0];
         // Teaser
         preg_match('/m-teaser[: ]*\K(.*?)(?=\<)/is', $newDocument, $matches);
         $teaser = $matches[0];
+        // Guest Author Bio
+        preg_match('/m-bio[: ]*\K(.*?)(?=\<)/is', $newDocument, $matches);
+        $bio = $matches[0];
         
         
         // Remove metadata after it's been saved in variables
@@ -171,15 +180,19 @@
             // Postdate
             '/(\<p\>[\s\<b\>\<i\>]*m-postdate[\s\S]*?<\/p\>)/is',
             // Subject
-            '/(\<p\>[\s\<b\>\<i\>]*m-subject[\s\S]*?<\/p\>)/is',
+            '/(\<p\>[\s\<b\>\<i\>]*m-title[\s\S]*?<\/p\>)/is',
             // Author
             '/(\<p\>[\s\<b\>\<i\>]*m-author[\s\S]*?<\/p\>)/is',
             // Categories
             '/(\<p\>[\s\<b\>\<i\>]*m-categories[\s\S]*?<\/p\>)/is',
+            // WP Categories
+            '/(\<p\>[\s\<b\>\<i\>]*m-wpcategories[\s\S]*?<\/p\>)/is',
             // Tags
             '/(\<p\>[\s\<b\>\<i\>]*m-tags[\s\S]*?<\/p\>)/is',
             // Teaser
-            '/(\<p\>[\s\<b\>\<i\>]*m-teaser[\s\S]*?<\/p\>)/is'
+            '/(\<p\>[\s\<b\>\<i\>]*m-teaser[\s\S]*?<\/p\>)/is',
+            // Author Bio
+            '/(\<p\>[\s\<b\>\<i\>]*m-bio[\s\S]*?<\/p\>)/is'
         ];
         $newDocument = preg_replace($pattern, '', $newDocument);
 
@@ -209,7 +222,6 @@
         <textarea name="document" placeholder="Paste the word document here..."></textarea>
         <label><input type="checkbox" name="readable" value="true" checked>Format readable</label>
         <label><input type="checkbox" name="endnotes" value="true" checked>Endnotes to h4 > ol</label>
-        <label><input type="text" name="h4style">style h4 tag</label>
         <input name="submit" type="submit" value="submit">
     </form>
 </div>
@@ -218,11 +230,13 @@
     <div class="inner-container">
         <h2>Edit the result below if needed and then copy by clicking "Copy".</h2>
         <p>post date: <?php if(isset($postDate)){ echo $postDate;} ?></p>
-        <p>subject: <?php if(isset($subject)){ echo $subject;} ?></p>
+        <p>title: <?php if(isset($title)){ echo $title;} ?></p>
         <p>author: <?php if(isset($author)){ echo $author;} ?></p>
         <p>categories: <?php if(isset($categories)){ echo $categories;} ?></p>
+        <p>wordpress categories: <?php if(isset($wpcategories)){ echo $wpcategories;} ?></p>
         <p>tags: <?php if(isset($tags)){ echo $tags;} ?></p>
         <p>teaser: <?php if(isset($teaser)){ echo $teaser;} ?></p>
+        <p>Guest Author Bio: <?php if(isset($bio)){ echo $bio;} ?></p>
         <button id="copyButton">Copy to memory</button>
         <div class="outerDiv" contenteditable="true">
             <?php
