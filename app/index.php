@@ -132,9 +132,10 @@
         
         
         // Add blockquotes to paragraphs which only contain the word "blockquote"
-        $newDocument = preg_replace('/(\<p.*\>\s*blockquote\s*\<\/p\>)/i', "<blockquote>", $newDocument);
+        // Adjust for users who apparently can't spell "quote"
+        $newDocument = preg_replace('/(\<p.*\>\s*block.*?te\s*\<\/p\>)/i', "<blockquote>", $newDocument);
         // Add closing blockquote tag to paragraphs which only contain the word "endblockquote"
-        $newDocument = preg_replace('/(\<p.*\>\s*endblockquote\s*\<\/p\>)/i', "</blockquote>", $newDocument);
+        $newDocument = preg_replace('/(\<p.*\>\s*endblock.*?te\s*\<\/p\>)/i', "</blockquote>", $newDocument);
         
         
         // Replace align with style tag
