@@ -77,6 +77,9 @@
         $newDocument = preg_replace('/(\—)/i', "&mdash;", $newDocument);
         // Replace N-Dashes with &ndash;
         $newDocument = preg_replace('/(\–)/i', "&ndash;", $newDocument);
+        // Replace light middot with &bull;
+        $newDocument = preg_replace('/(\·)/i', "&bull;", $newDocument);
+        
         
         
         
