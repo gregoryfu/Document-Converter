@@ -181,21 +181,21 @@
         // Remove metadata after it's been saved in variables
         $pattern = [
             // Postdate
-            '/(\<p\>[\s\<b\>\<i\>]*m-postdate[\s\S]*?<\/p\>)/is',
+            '/(\<p[\s\S]*\>[\s\<b\>\<i\>]*m-postdate[\s\S]*?<\/p\>)/is',
             // Subject
-            '/(\<p\>[\s\<b\>\<i\>]*m-title[\s\S]*?<\/p\>)/is',
+            '/(\<p[\s\S]*\>[\s\<b\>\<i\>]*m-title[\s\S]*?<\/p\>)/is',
             // Author
-            '/(\<p\>[\s\<b\>\<i\>]*m-author[\s\S]*?<\/p\>)/is',
+            '/(\<p[\s\S]*\>[\s\<b\>\<i\>]*m-author[\s\S]*?<\/p\>)/is',
             // Categories
-            '/(\<p\>[\s\<b\>\<i\>]*m-categories[\s\S]*?<\/p\>)/is',
+            '/(\<p[\s\S]*\>[\s\<b\>\<i\>]*m-categories[\s\S]*?<\/p\>)/is',
             // WP Categories
-            '/(\<p\>[\s\<b\>\<i\>]*m-wpcategories[\s\S]*?<\/p\>)/is',
+            '/(\<p[\s\S]*\>[\s\<b\>\<i\>]*m-wpcategories[\s\S]*?<\/p\>)/is',
             // Tags
-            '/(\<p\>[\s\<b\>\<i\>]*m-tags[\s\S]*?<\/p\>)/is',
+            '/(\<p[\s\S]*\>[\s\<b\>\<i\>]*m-tags[\s\S]*?<\/p\>)/is',
             // Teaser
-            '/(\<p\>[\s\<b\>\<i\>]*m-teaser[\s\S]*?<\/p\>)/is',
+            '/(\<p[\s\S]*\>[\s\<b\>\<i\>]*m-teaser[\s\S]*?<\/p\>)/is',
             // Author Bio
-            '/(\<p\>[\s\<b\>\<i\>]*m-bio[\s\S]*?<\/p\>)/is'
+            '/(\<p[\s\S]*\>[\s\<b\>\<i\>]*m-bio[\s\S]*?<\/p\>)/is'
         ];
         $newDocument = preg_replace($pattern, '', $newDocument);
 
