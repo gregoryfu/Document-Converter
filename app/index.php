@@ -36,7 +36,7 @@
             // Remove end body tag
             '/(\<\/body\>)/is',
             // Remove start html tag
-            '/(\<html\>)/is',
+            '/(\<html.*?\>)/is',
             // Remove end html tag
             '/(\<\/html\>)/is',
             // Remove EVERYTHING within first div tag
