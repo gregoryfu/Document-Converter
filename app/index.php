@@ -154,28 +154,28 @@
         
         // Process metadata
         // Postdate
-        preg_match('/m-postdate[: ]*\K(.*?)(?=\<)/is', $newDocument, $matches);
+        preg_match('/m-postdate\s*:*(?:\<b\>)*(?:\<u\>)*(?:\<i\>)*\K(.*?)(?=\<\/)/is', $newDocument, $matches);
         $postDate = $matches[0];
         // Subject
-        preg_match('/m-title[: ]*\K(.*?)(?=\<)/is', $newDocument, $matches);
+        preg_match('/m-title\s*:*(?:\<b\>)*(?:\<u\>)*(?:\<i\>)*\K(.*?)(?=\<\/)/is', $newDocument, $matches);
         $title = $matches[0];
         // Author
-        preg_match('/m-author[: ]*\K(.*?)(?=\<)/is', $newDocument, $matches);
+        preg_match('/m-author\s*:*(?:\<b\>)*(?:\<u\>)*(?:\<i\>)*\K(.*?)(?=\<\/)/is', $newDocument, $matches);
         $author = $matches[0];
         // Categories
-        preg_match('/m-categories[: ]*\K(.*?)(?=\<)/is', $newDocument, $matches);
+        preg_match('/m-categories\s*:*(?:\<b\>)*(?:\<u\>)*(?:\<i\>)*\K(.*?)(?=\<\/)/is', $newDocument, $matches);
         $categories = $matches[0];
         // WP Categories
-        preg_match('/m-wpcategories[: ]*\K(.*?)(?=\<)/is', $newDocument, $matches);
+        preg_match('/m-wpcategories\s*:*(?:\<b\>)*(?:\<u\>)*(?:\<i\>)*\K(.*?)(?=\<\/)/is', $newDocument, $matches);
         $wpcategories = $matches[0];
         // Tags
-        preg_match('/m-tags[: ]*\K(.*?)(?=\<)/is', $newDocument, $matches);
+        preg_match('/m-tags\s*:*(?:\<b\>)*(?:\<u\>)*(?:\<i\>)*\K(.*?)(?=\<\/)/is', $newDocument, $matches);
         $tags = $matches[0];
         // Teaser
-        preg_match('/m-teaser[: ]*\K(.*?)(?=\<)/is', $newDocument, $matches);
+        preg_match('/m-teaser\s*:*(?:\<b\>)*(?:\<u\>)*(?:\<i\>)*\K(.*?)(?=\<\/)/is', $newDocument, $matches);
         $teaser = $matches[0];
         // Guest Author Bio
-        preg_match('/m-bio[: ]*\K(.*?)(?=\<)/is', $newDocument, $matches);
+        preg_match('/m-bio\s*:*(?:\<b\>)*(?:\<u\>)*(?:\<i\>)*\K(.*?)(?=\<\/)/is', $newDocument, $matches);
         $bio = $matches[0];
         
         
