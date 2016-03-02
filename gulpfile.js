@@ -1,4 +1,19 @@
-// Require All NPM Modules
+/*
+####################################################
+####################################################
+############## COPYRIGHT AARON M KENNY #############
+###### CODE NOT TO BE USED WITHOUT PERMISSION ######
+###### SEND REQUESTS TO AARONMKENNY@GMAIL.COM ######
+####################################################
+####################################################
+*/
+
+/*
+####################################################
+############### REQUIRE NPM MODULES ################
+####################################################
+*/
+
 var gulp = require("gulp"),
     sass = require("gulp-ruby-sass"),
     rename = require("gulp-rename"),
@@ -6,16 +21,26 @@ var gulp = require("gulp"),
     uglify = require("gulp-uglify"),
     concat = require("gulp-concat");
 
+/*
+####################################################
+##################### SETTINGS #####################
+####################################################
+*/
+
 // Default JavaScript Action
 // Value "JSMinify" Will Concatenate AND Minify all JavaScript Files
-// Value "JSConcat" Will Only Concatenate JavaScript Files
+// Value "JSConcat" Will ONLY Concatenate JavaScript Files
 var JSAction = "JSConcat";
 
 // Default Task
 gulp.task("default", ["styles", JSAction, "watch"]);
 
-// SASS Compile Task
-// Compile SASS and Move to CSS Folder
+/*
+####################################################
+################ SASS COMPILE TASK #################
+####################################################
+*/
+
 gulp.task("styles", function(){
   return sass("app/assets/source_scss/styles.scss", {
     "style": "compressed",
@@ -28,8 +53,12 @@ gulp.task("styles", function(){
   .pipe(gulp.dest("app/assets/css"));
 });
 
-// Scripts Minify Task
-// Minifies AND Concatenates JavaScript
+/*
+####################################################
+########### SCRIPTS CONCATENATE & MINIFY ###########
+####################################################
+*/
+
 gulp.task("JSMinify", function(){
   gulp.src(["app/assets/source_js/vendor/*.js", "app/assets/source_js/plugins/*.js", "app/assets/source_js/*.js"])
   .pipe(plumber())
@@ -38,8 +67,12 @@ gulp.task("JSMinify", function(){
   .pipe(gulp.dest("app/assets/js"));
 });
 
-// Script Concat ONLY Task
-// Only Concatenates Files together To Save On Requests, And Avoids Issues With Minifying
+/*
+####################################################
+############# SCRIPTS CONCATENATE ONLY #############
+####################################################
+*/
+
 gulp.task("JSConcat", function(){
   gulp.src(["app/assets/source_js/vendor/*.js", "app/assets/source_js/plugins/*.js", "app/assets/source_js/*.js"])
   .pipe(plumber())
@@ -47,8 +80,12 @@ gulp.task("JSConcat", function(){
   .pipe(gulp.dest("app/assets/js"));
 });
 
-// Watch Task
-// Run The Followings Tasks On Change
+/*
+####################################################
+################# GULP WATCH TASK ##################
+####################################################
+*/
+
 gulp.task("watch", function(){
   gulp.watch(["app/assets/source_scss/**/*.scss"], ["styles"]);
   gulp.watch(["app/assets/source_js/**/*.js"], [JSAction]);
