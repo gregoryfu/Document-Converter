@@ -1,5 +1,5 @@
 {
-  "name": "Article Converter",
+  "name": "Article_Converter",
   "version": "1.0.0",
   "description": "Program to help automate mundane data entry from Microsoft Word articles to an HTML formatted web version",
   "main": "gulpfile.js",
