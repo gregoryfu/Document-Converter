@@ -16,6 +16,8 @@
 
 var gulp = require("gulp"),
     sass = require("gulp-ruby-sass"),
+    autoprefixer = require("gulp-autoprefixer"),
+    sourcemaps = require('gulp-sourcemaps'),
     rename = require("gulp-rename"),
     plumber = require("gulp-plumber"),
     uglify = require("gulp-uglify"),
@@ -27,30 +29,59 @@ var gulp = require("gulp"),
 ####################################################
 */
 
+
 // Default JavaScript Action
 // Value "JSMinify" Will Concatenate AND Minify all JavaScript Files
 // Value "JSConcat" Will ONLY Concatenate JavaScript Files
 var JSAction = "JSConcat";
 
-// Default Task
+// Default Task (Development)
 gulp.task("default", ["styles", JSAction, "watch"]);
+// Distribution build task
+gulp.task("build", ["stylesProd", JSAction]);
 
 /*
 ####################################################
-################ SASS COMPILE TASK #################
+######### SASS COMPILE TASK (DEVELOPMENT) ##########
 ####################################################
 */
 
 gulp.task("styles", function(){
-  return sass("app/assets/source_scss/styles.scss", {
-    "style": "compressed",
-    "cacheLocation": "temp/sass-cache"
-  })
-  .on("error", function(err) {
-    console.error("Error!", err.message);
-  })
-  .pipe(rename("styles.min.css"))
-  .pipe(gulp.dest("app/assets/css"));
+    return sass("app/assets/source_scss/styles.scss", {
+        style: "compressed",
+        cacheLocation: "temp/sass-cache",
+        sourcemap: true
+    })
+    .on("error", function(err) {
+        console.error("Error!", err.message);
+    })
+    .pipe(autoprefixer({
+        browsers: ["> 1%"]
+    }))
+    .pipe(rename("styles.min.css"))
+    .pipe(sourcemaps.write())
+    .pipe(gulp.dest("app/assets/css"));
+});
+
+/*
+####################################################
+######### SASS COMPILE TASK (DISTRIBUTION) #########
+####################################################
+*/
+
+gulp.task("stylesProd", function(){
+    return sass("app/assets/source_scss/styles.scss", {
+        style: "compressed",
+        cacheLocation: "temp/sass-cache"
+    })
+    .on("error", function(err) {
+        console.error("Error!", err.message);
+    })
+    .pipe(autoprefixer({
+        browsers: ["> 1%"]
+    }))
+    .pipe(rename("styles.min.css"))
+    .pipe(gulp.dest("app/assets/css"));
 });
 
 /*
