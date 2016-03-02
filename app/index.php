@@ -241,7 +241,6 @@
         <p>tags: <?php if(isset($tags)){ echo $tags;} ?></p>
         <p>teaser: <?php if(isset($teaser)){ echo $teaser;} ?></p>
         <p>Guest Author Bio: <?php if(isset($bio)){ echo $bio;} ?></p>
-        <button id="copyButton">Copy to memory</button>
         <div class="outerDiv" contenteditable="true">
             <?php
             if(isset($newDocument) && $readable != true){ echo $newDocument;}
