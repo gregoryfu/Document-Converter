@@ -64,6 +64,10 @@
             '/(?<=\<sup\>\d)(\s)*(?=\<\/sup\>)/is',
             // Remove white spaces within the opening p tag
             '/(\<p\K\s+)/is',
+            // Remove EVERYTHING within first ins tag
+            '/(\<ins.*?>)/is',
+            // Remove ending ins tag
+            '/(\<\/ins\>)/is',
             // Match ALL empty HTML tags
             '/(<[^\/>][^>]*><\/[^>]+>)/i'
         ];
