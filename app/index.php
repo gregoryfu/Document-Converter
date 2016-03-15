@@ -39,6 +39,8 @@
             '/(\<html.*?\>)/is',
             // Remove end html tag
             '/(\<\/html\>)/is',
+            // Remove EVERYTHING between del tags
+            '/(\<del.*?\<\/del\>)/is',
             // Remove EVERYTHING within first div tag
             '/(\<div.*?\>)/is',
             // Remove end div tag
