@@ -96,7 +96,7 @@
         
         if($endnotes == true){
             // Replace Endnotes with H4
-            $newDocument = preg_replace('/(\<p\>[\s\<b\>]*endnotes[\s\<\/b\>]*<\/p\>)/is', "<h4 style=\"margin-bottom: 15px; font-weight: bold;\">Endnotes</h4>", $newDocument);
+            $newDocument = preg_replace('/(\<p\>[\s\<b\>]*endnotes[\s\<\/b\>]*<\/p\>)/is', "<p style=\"margin-bottom: 15px; font-weight: bold;\">Endnotes</p>", $newDocument);
             // Replace p tags after "endnotes" with li tags
             $liPattern = [
                 '/(?<=endnotes\<\/h4\>).*?\K(\<p\>\d\.*\s*)/is',
@@ -231,7 +231,7 @@
     <form action="" method="post">
         <textarea name="document" placeholder="Paste the word document here..."></textarea>
         <label><input type="checkbox" name="readable" value="true" checked>Format readable</label>
-        <label><input type="checkbox" name="endnotes" value="true" checked>Endnotes to h4 > ol</label>
+        <label><input type="checkbox" name="endnotes" value="true" checked>Endnotes to p > ol</label>
         <input name="submit" type="submit" value="submit">
     </form>
 </div>
