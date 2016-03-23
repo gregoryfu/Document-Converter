@@ -22,6 +22,14 @@
         // Change ending sup tag to an actual </sup> tag
         $newDocument = preg_replace('/(?<=\<sup\>).*?\K(\<\/span\>)/is', '</sup>', $newDocument);
         
+        // Change i tags with a space into just a space
+        $newDocument = preg_replace('/(\<i\>\s{1}\<\/i\>)/is', ' ', $newDocument);
+        $newDocument = preg_replace('/(\<i\>\s{1}\n\<\/i\>)/is', ' ', $newDocument);
+        
+        // Change b tags with a space into just a space
+        $newDocument = preg_replace('/(\<b\>\s{1}\<\/b\>)/is', ' ', $newDocument);
+        $newDocument = preg_replace('/(\<b\>\s{1}\n\<\/b\>)/is', ' ', $newDocument);
+        
         // Remove main garbage (ie. head, style, and script tags)
         $pattern = [
             // MAJOR
