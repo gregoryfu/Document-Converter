@@ -104,7 +104,7 @@
         
         if($endnotes == true){
             // Replace Endnotes with H4
-            $newDocument = preg_replace('/(\<p\>[\s\<b\>]*endnotes[\s\<\/b\>]*<\/p\>)/is', "<p style=\"margin-bottom: 15px; font-weight: bold;\">Endnotes</p>", $newDocument);
+            $newDocument = preg_replace('/(\<p\>[\s\<b\>]*endnotes[\s\<\/b\>]*<\/p\>)/is', "<h4 style=\"margin-bottom: 15px; font-weight: bold;\">Endnotes</h4>", $newDocument);
             // Replace p tags after "endnotes" with li tags
             $liPattern = [
                 '/(?<=endnotes\<\/h4\>).*?\K(\<p\>\d\.*\s*)/is',
